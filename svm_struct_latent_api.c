@@ -165,6 +165,7 @@ SAMPLE read_struct_examples(char *file, STRUCT_LEARN_PARM *sparm) {
 	char file_name[1000];
 	int n_example = 0;
 	int label;
+    sample.examples = NULL;
     
     for(i = 0; i < sample.n; i++){        
         fscanf(fp, "%d", &is_fs);
