@@ -712,7 +712,7 @@ void parse_struct_parameters(STRUCT_LEARN_PARM *sparm) {
       case 'r': i++; sparm->rng_seed = atoi(sparm->custom_argv[i]); break;
       case 'w': i++; sparm->weak_weight = atof(sparm->custom_argv[i]); break;
       case 'p': i++; sparm->robust_cent = atof(sparm->custom_argv[i]); break;
-      case 'j': i++; sparm->j = atoi(sparm->custom_argv[i]); break;
+      case 'j': i++; sparm->j = atof(sparm->custom_argv[i]); break;
       default: printf("\nUnrecognized option %s!\n\n", sparm->custom_argv[i]); exit(0);
     }
   }
