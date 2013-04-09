@@ -112,6 +112,7 @@ typedef struct struct_learn_parm {
   int rng_seed;
   double weak_weight;
   double robust_cent;
+  double j;
 
   double gram_regularization;
 } STRUCT_LEARN_PARM;

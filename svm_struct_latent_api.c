@@ -124,13 +124,12 @@ SAMPLE read_struct_test_examples(char *file, STRUCT_LEARN_PARM *sparm) {
         } else {
             sample.n_pos++;
         }
-
     }
 
     for (i = 0; i < sample.n; i++)
     {
         if(sample.examples[i].y.label == 1){
-        sample.examples[i].x.example_cost = sparm->weak_weight*((double)sample.n_neg)/((double) sample.n_pos);
+            sample.examples[i].x.example_cost = sparm->weak_weight*((double)sample.n_neg)/((double) sample.n_pos);
         }
     }
 
@@ -255,7 +254,7 @@ SAMPLE read_struct_examples(char *file, STRUCT_LEARN_PARM *sparm) {
     {
         if(sample.examples[i].y.label == 1){
             if(sample.examples[i].x.supervised_positive){
-                sample.examples[i].x.example_cost = ((double)sample.n_neg)/((double) sample.n_pos);
+                sample.examples[i].x.example_cost = sparm->j*((double)sample.n_neg)/((double) sample.n_pos);
             }
             else{
                 sample.examples[i].x.example_cost = sparm->weak_weight*((double)sample.n_neg)/((double) sample.n_pos);
@@ -704,6 +703,7 @@ void parse_struct_parameters(STRUCT_LEARN_PARM *sparm) {
   sparm->rng_seed = 0;
   sparm->weak_weight = 1e0;
   sparm->robust_cent = 0;
+  sparm->j = 1e0;
   
   for (i=0;(i<sparm->custom_argc)&&((sparm->custom_argv[i])[0]=='-');i++) {
     switch ((sparm->custom_argv[i])[2]) {
@@ -712,6 +712,7 @@ void parse_struct_parameters(STRUCT_LEARN_PARM *sparm) {
       case 'r': i++; sparm->rng_seed = atoi(sparm->custom_argv[i]); break;
       case 'w': i++; sparm->weak_weight = atof(sparm->custom_argv[i]); break;
       case 'p': i++; sparm->robust_cent = atof(sparm->custom_argv[i]); break;
+      case 'j': i++; sparm->j = atoi(sparm->custom_argv[i]); break;
       default: printf("\nUnrecognized option %s!\n\n", sparm->custom_argv[i]); exit(0);
     }
   }
